@@ -2,46 +2,64 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- REQUIRED -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <!-- SMS permission -->
+    <uses-permission android:name="android.permission.SEND_SMS"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+    <!-- Inside <application> -->
+    <activity android:name=".WalkHistoryActivity" android:exported="false"/>
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SafeWalk_">
 
-        <!-- GOOGLE MAPS API KEY -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="YOUR_MAPS_API_KEY"/>
 
-        <activity android:name=".StartWalk" />
-
+        <!-- Login is the entry point -->
         <activity
-            android:name=".ActiveWalkActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".ManageGuardiansActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:exported="true">
-
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-
         </activity>
+
+        <activity android:name=".SignUpActivity"/>
+        <activity android:name=".MainActivity" android:exported="false"/>
+        <activity android:name=".StartWalk"/>
+        <activity android:name=".ActiveWalkActivity" android:exported="false"/>
+        <activity android:name=".ManageGuardiansActivity" android:exported="false"/>
+        <activity android:name=".GuardianPickerActivity" android:exported="false"/>
+        <activity android:name=".GuardianMapActivity" android:exported="false"/>
+        <activity android:name=".GuardianAlertActivity" android:exported="false"/>
+        <activity android:name=".SafeArrivalActivity" android:exported="false"/>
+        <activity android:name=".ProfileActivity" android:exported="false"/>
+
+        <service
+            android:name=".MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name=".GeofenceBroadcastReceiver"
+            android:exported="true"/>
 
     </application>
 

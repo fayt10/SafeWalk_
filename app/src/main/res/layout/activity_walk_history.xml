@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F5F5F5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#1A237E"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Walk History &amp; Stats"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <!-- Stats Grid -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:background="#FFFFFF" android:padding="12dp"
+            android:gravity="center" android:layout_marginEnd="8dp" android:elevation="2dp">
+            <TextView android:id="@+id/tvTotalWalks"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="0" android:textSize="24sp" android:textStyle="bold"
+                android:textColor="#1A237E"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Total walks" android:textSize="11sp" android:textColor="#757575"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:background="#FFFFFF" android:padding="12dp"
+            android:gravity="center" android:layout_marginEnd="8dp" android:elevation="2dp">
+            <TextView android:id="@+id/tvTotalDistance"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="0 km" android:textSize="20sp" android:textStyle="bold"
+                android:textColor="#1A237E"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Total distance" android:textSize="11sp" android:textColor="#757575"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:background="#FFFFFF" android:padding="12dp"
+            android:gravity="center" android:elevation="2dp">
+            <TextView android:id="@+id/tvTotalTime"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="0 min" android:textSize="20sp" android:textStyle="bold"
+                android:textColor="#1A237E"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Total time" android:textSize="11sp" android:textColor="#757575"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp" android:paddingEnd="16dp" android:paddingBottom="16dp">
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:background="#FFFFFF" android:padding="12dp"
+            android:gravity="center" android:layout_marginEnd="8dp" android:elevation="2dp">
+            <TextView android:id="@+id/tvNightWalks"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="0" android:textSize="24sp" android:textStyle="bold"
+                android:textColor="#283593"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Night walks" android:textSize="11sp" android:textColor="#757575"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:background="#FFFFFF" android:padding="12dp"
+            android:gravity="center" android:layout_marginEnd="8dp" android:elevation="2dp">
+            <TextView android:id="@+id/tvAvgDuration"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="0 min" android:textSize="20sp" android:textStyle="bold"
+                android:textColor="#283593"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Avg duration" android:textSize="11sp" android:textColor="#757575"/>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:background="#FFFFFF" android:padding="12dp"
+            android:gravity="center" android:elevation="2dp">
+            <TextView android:id="@+id/tvPanicCount"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="0" android:textSize="24sp" android:textStyle="bold"
+                android:textColor="#B71C1C"/>
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Alerts sent" android:textSize="11sp" android:textColor="#757575"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Recent Journeys"
+        android:textSize="16sp" android:textStyle="bold" android:textColor="#1A237E"
+        android:layout_marginStart="16dp" android:layout_marginBottom="8dp"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWalkHistory"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"/>
+
+</LinearLayout>
