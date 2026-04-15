@@ -28,7 +28,6 @@ public class SmsHelper {
 
     public static void sendPanicSms(Context context, String guardianPhone,
                                     String userName, double lat, double lng) {
-        if (isInternetAvailable(context)) return; // only send SMS if no internet
 
         String mapsLink = "https://maps.google.com/?q=" + lat + "," + lng;
         String msg = "[SafeWalk EMERGENCY] " + userName +
@@ -48,7 +47,6 @@ public class SmsHelper {
 
     public static void sendSafeArrivalSms(Context context, String guardianPhone,
                                           String userName, String destination) {
-        if (isInternetAvailable(context)) return;
 
         String msg = "[SafeWalk] " + userName +
                 " has arrived safely at " + destination + ". All is well!";
@@ -62,5 +60,14 @@ public class SmsHelper {
         String mapsLink = "https://maps.google.com/?q=" + lat + "," + lng;
         String msg = "[SafeWalk] Location update for " + userName + ": " + mapsLink;
         sendSms(guardianPhone, msg);
+    }
+
+    public static void sendOverdueSms(Context context, String guardianPhone,
+                                      String userName, String destination,
+                                      double lat, double lng) {
+        String mapsLink = "https://maps.google.com/?q=" + lat + "," + lng;
+        String msg = "[SafeWalk] " + userName + " has not arrived at "
+                + destination + " yet. Last known location: " + mapsLink;
+        sendSms(guardianPhone, msg); // No internet check — always send
     }
 }

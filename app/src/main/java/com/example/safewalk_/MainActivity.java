@@ -98,12 +98,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openGuardians() {
-        Toast.makeText(this, "Opening Guardians management", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, ManageGuardiansActivity.class));
     }
 
     private void openHistory() {
-        Toast.makeText(this, "Opening Walk History", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, WalkHistoryActivity.class));
     }
+} else if (id == R.id.nav_history) {
+startActivity(new Intent(this, WalkHistoryActivity.class));
+        return true;
+        }
 
     // MapView lifecycle methods
     @Override

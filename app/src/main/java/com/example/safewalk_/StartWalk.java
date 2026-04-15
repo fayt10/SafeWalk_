@@ -188,6 +188,26 @@ public class StartWalk extends AppCompatActivity {
      * Validates fields and launches the active walk screen.
      */
     private void beginWalk() {
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        JourneyData journey = new JourneyData(uid, destination, checkinInterval);
+        journey.arrivalTime = selectedHour + ":" + selectedMinute;
+
+        db.collection("journeys").add(journey)
+                .addOnSuccessListener(ref -> {
+                    String journeyId = ref.getId();
+                    // Update the doc with its own ID
+                    ref.update("journeyId", journeyId);
+                    // THEN launch ActiveWalkActivity
+                    Intent intent = new Intent(this, ActiveWalkActivity.class);
+                    intent.putExtra(ActiveWalkActivity.EXTRA_DESTINATION, destination);
+                    intent.putExtra(ActiveWalkActivity.EXTRA_ARRIVAL_HOUR, selectedHour);
+                    intent.putExtra(ActiveWalkActivity.EXTRA_ARRIVAL_MINUTE, selectedMinute);
+                    intent.putExtra(ActiveWalkActivity.EXTRA_CHECKIN_INTERVAL, checkinInterval);
+                    intent.putExtra(ActiveWalkActivity.EXTRA_JOURNEY_ID, journeyId);
+                    startActivity(intent);
+                });
         String destination = etDestination.getText().toString().trim();
 
         if (destination.isEmpty()) {
