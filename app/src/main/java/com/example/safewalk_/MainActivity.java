@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -29,19 +30,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Initialize Views
-        tvGreeting = findViewById(R.id.tvGreeting);
-        tvStatus = findViewById(R.id.tvStatus);
+        tvGreeting  = findViewById(R.id.tvGreeting);
+        tvStatus    = findViewById(R.id.tvStatus);
         tvSubStatus = findViewById(R.id.tvSubStatus);
 
         btnStartWalk = findViewById(R.id.btnStartWalk);
-        btnPanic = findViewById(R.id.btnPanic);
+        btnPanic     = findViewById(R.id.btnPanic);
         btnGuardians = findViewById(R.id.btnGuardians);
-        btnHistory = findViewById(R.id.btnHistory);
+        btnHistory   = findViewById(R.id.btnHistory);
 
         mapPreview = findViewById(R.id.mapPreview);
 
+        // Bottom navigation
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
-
         bottomNav.setOnItemSelectedListener(item -> {
             int id = item.getItemId();
 
@@ -49,11 +50,13 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             } else if (id == R.id.nav_profile) {
-                Toast.makeText(this, "Profile section", Toast.LENGTH_SHORT).show();
+                // TODO: replace with ProfileActivity when ready
+                Toast.makeText(this, "Profile coming soon", Toast.LENGTH_SHORT).show();
                 return true;
 
             } else if (id == R.id.nav_history) {
-                Toast.makeText(this, "History section", Toast.LENGTH_SHORT).show();
+                // FIX: was only showing a Toast — now actually navigates
+                startActivity(new Intent(this, WalkHistoryActivity.class));
                 return true;
             }
 
@@ -65,24 +68,15 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             mapViewBundle = savedInstanceState.getBundle(MAP_VIEW_BUNDLE_KEY);
         }
-
         mapPreview.onCreate(mapViewBundle);
-
-        mapPreview.getMapAsync(new OnMapReadyCallback() {
-            @Override
-            public void onMapReady(@NonNull GoogleMap googleMap) {
-                gMap = googleMap;
-            }
-        });
+        mapPreview.getMapAsync(googleMap -> gMap = googleMap);
 
         // Set greeting
         updateGreeting("Janel");
 
-        // ✅ Correct button click (ONLY navigation)
-        btnStartWalk.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, StartWalk.class);
-            startActivity(intent);
-        });
+        // Card button click listeners
+        btnStartWalk.setOnClickListener(v ->
+                startActivity(new Intent(this, StartWalk.class)));
 
         btnPanic.setOnClickListener(v -> triggerPanic());
         btnGuardians.setOnClickListener(v -> openGuardians());
@@ -104,12 +98,9 @@ public class MainActivity extends AppCompatActivity {
     private void openHistory() {
         startActivity(new Intent(this, WalkHistoryActivity.class));
     }
-} else if (id == R.id.nav_history) {
-startActivity(new Intent(this, WalkHistoryActivity.class));
-        return true;
-        }
 
-    // MapView lifecycle methods
+    // ── MapView lifecycle ─────────────────────────────────────────────────────
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -150,12 +141,10 @@ startActivity(new Intent(this, WalkHistoryActivity.class));
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
         Bundle mapViewBundle = outState.getBundle(MAP_VIEW_BUNDLE_KEY);
-
         if (mapViewBundle == null) {
             mapViewBundle = new Bundle();
             outState.putBundle(MAP_VIEW_BUNDLE_KEY, mapViewBundle);
         }
-
         mapPreview.onSaveInstanceState(mapViewBundle);
     }
 }

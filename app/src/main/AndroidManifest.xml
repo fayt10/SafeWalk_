@@ -25,9 +25,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="YOUR_MAPS_API_KEY"/>
 
-        <!-- Login is the entry point -->
+        <!-- MainActivity is now the entry point -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -35,29 +35,31 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".SignUpActivity"/>
-        <activity android:name=".MainActivity" android:exported="false"/>
+        <!-- Missing activities commented out to prevent ClassNotFoundException -->
+        <!-- <activity android:name=".LoginActivity"/> -->
+        <!-- <activity android:name=".SignUpActivity"/> -->
+        <!-- <activity android:name=".GuardianMapActivity" android:exported="false"/> -->
+        <!-- <activity android:name=".GuardianAlertActivity" android:exported="false"/> -->
+        <!-- <activity android:name=".ProfileActivity" android:exported="false"/> -->
+
         <activity android:name=".StartWalk"/>
         <activity android:name=".ActiveWalkActivity" android:exported="false"/>
         <activity android:name=".ManageGuardiansActivity" android:exported="false"/>
         <activity android:name=".GuardianPickerActivity" android:exported="false"/>
-        <activity android:name=".GuardianMapActivity" android:exported="false"/>
-        <activity android:name=".GuardianAlertActivity" android:exported="false"/>
         <activity android:name=".SafeArrivalActivity" android:exported="false"/>
-        <activity android:name=".ProfileActivity" android:exported="false"/>
         <activity android:name=".WalkHistoryActivity" android:exported="false"/>
 
-        <service
+        <!-- <service
             android:name=".MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
-        </service>
+        </service> -->
 
-        <receiver
+        <!-- <receiver
             android:name=".GeofenceBroadcastReceiver"
-            android:exported="true"/>
+            android:exported="true"/> -->
 
     </application>
 
