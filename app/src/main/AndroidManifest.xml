@@ -26,14 +26,13 @@
             android:value="YOUR_MAPS_API_KEY"/>
 
         <!-- MainActivity is now the entry point -->
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
-            </intent-filter>
-        </activity>
+      <!-- LoginActivity is now the entry point -->
+<activity android:name=".LoginActivity">
+    <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+    </intent-filter>
+</activity>
 
         <!-- Missing activities commented out to prevent ClassNotFoundException -->
         <!-- <activity android:name=".LoginActivity"/> -->
